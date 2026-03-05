@@ -150,7 +150,7 @@ function Auctionator_AuctionFrameTab_OnClick (index)
         getglobal("Auctionator_Sell_Template"):Show();
         AuctionFrame:EnableMouse(false);
         
-        OpenAllBags(true);
+        --OpenAllBags(true);
         
         if (currentAuctionItemName ~= "") then
             Auctionator_CalcBaseData();
@@ -268,6 +268,10 @@ end
 -----------------------------------------
 
 function Auctionator_AddSellPanel ()
+
+    -- Reparented to AuctionFrame and relevelled children to prevent panel from rendering above other UI elements
+    Auctionator_Sell_Template:SetParent(AuctionFrame)
+    relevel(Auctionator_Sell_Template)
     
 --	local frame = CreateFrame("Frame", "Auctionator_Sell_Panel", AuctionFrame, "Auctionator_Sell_Template");
     --frame:SetParent("AuctionFrame");
